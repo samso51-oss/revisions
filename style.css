@@ -772,6 +772,96 @@ select:focus {
         right: 0;
         left: auto;
     }
+    
+    /* Optimisation spécifique pour la page de chat */
+    .chat-container {
+        height: 100vh;
+        padding: 10px;
+        border-radius: 0;
+    }
+    
+    .chat-header {
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+    }
+    
+    .chat-header h2 {
+        font-size: 1.1em;
+    }
+    
+    .btn-menu {
+        padding: 8px 12px;
+        font-size: 1.1em;
+    }
+    
+    .chat-info {
+        margin-bottom: 8px;
+        gap: 5px;
+    }
+    
+    .chat-badge {
+        padding: 5px 10px;
+        font-size: 0.75em;
+    }
+    
+    .chat-messages {
+        padding: 10px;
+        margin-bottom: 8px;
+        /* Hauteur optimisée pour mobile */
+        height: calc(100vh - 280px);
+        max-height: none;
+    }
+    
+    .message-bubble {
+        max-width: 85%;
+        padding: 10px 15px;
+        font-size: 0.95em;
+    }
+    
+    .action-buttons {
+        padding: 0 5px;
+        margin-bottom: 8px;
+        gap: 5px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .action-btn {
+        padding: 8px 15px;
+        font-size: 0.85em;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .chat-input-container {
+        gap: 5px;
+    }
+    
+    #chat-input {
+        padding: 12px;
+        font-size: 0.95em;
+    }
+    
+    .btn-send {
+        padding: 12px 20px;
+        font-size: 0.95em;
+    }
+    
+    .loading-message {
+        padding: 15px;
+    }
+    
+    .api-key-notice {
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    
+    .api-key-notice p {
+        font-size: 0.9em;
+        margin-bottom: 8px;
+    }
 }
 
 /* Modal de réglages */
