@@ -170,9 +170,11 @@
         <section id="step-chat" class="step">
             <div class="chat-container">
                 <div class="chat-header">
-                    <h2>� Révisions de <span id="chat-student-name"></span></h2>
+                    <h2>Révisions de <span id="chat-student-name"></span></h2>
                     <div class="header-menu">
-                        <button class="btn-menu" onclick="toggleMenu(event)" id="menu-button">⚙️</button>
+                        <button class="btn-menu" onclick="toggleMenu(event)" id="menu-button">
+                            <span class="hamburger-icon"></span>
+                        </button>
                         <div class="menu-dropdown" id="menu-dropdown">
                             <button class="menu-item" onclick="openSettings(); toggleMenu();" type="button">⚙️ Réglages</button>
                             <button class="menu-item" onclick="changeActivity(); toggleMenu();" type="button">🔄 Changer d'activité</button>

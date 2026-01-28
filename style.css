@@ -437,11 +437,40 @@ select:focus {
     cursor: pointer;
     font-size: 1.3em;
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hamburger-icon {
+    display: inline-block;
+    width: 22px;
+    height: 2px;
+    background: white;
+    position: relative;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 2px;
+    background: white;
+    left: 0;
+}
+
+.hamburger-icon::before {
+    top: -7px;
+}
+
+.hamburger-icon::after {
+    top: 7px;
 }
 
 .btn-menu:hover {
     background: #764ba2;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .menu-dropdown {
@@ -616,6 +645,23 @@ select:focus {
     flex-wrap: wrap;
     margin-bottom: 15px;
     padding: 0 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.action-buttons::-webkit-scrollbar {
+    height: 6px;
+}
+
+.action-buttons::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 3px;
+}
+
+.action-buttons::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 3px;
 }
 
 .action-btn {
@@ -799,6 +845,25 @@ select:focus {
         padding: 6px 10px;
         font-size: 1em;
         min-width: 40px;
+        min-height: 40px;
+    }
+    
+    .hamburger-icon {
+        width: 20px;
+        height: 2px;
+    }
+    
+    .hamburger-icon::before,
+    .hamburger-icon::after {
+        width: 20px;
+    }
+    
+    .hamburger-icon::before {
+        top: -6px;
+    }
+    
+    .hamburger-icon::after {
+        top: 6px;
     }
     
     .chat-info {
@@ -828,13 +893,21 @@ select:focus {
     }
     
     .action-buttons {
-        padding: 0 4px;
+        padding: 0;
         margin-bottom: 6px;
-        gap: 4px;
+        gap: 6px;
         overflow-x: auto;
+        overflow-y: hidden;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
         flex-shrink: 0;
+        /* Permettre de voir tous les boutons */
+        width: 100%;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .action-buttons::-webkit-scrollbar {
+        height: 4px;
     }
     
     .action-btn {
@@ -842,6 +915,7 @@ select:focus {
         font-size: 0.8em;
         white-space: nowrap;
         flex-shrink: 0;
+        scroll-snap-align: start;
     }
     
     .chat-input-container {
