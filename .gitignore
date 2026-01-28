@@ -1,0 +1,16 @@
+# Fichier de configuration avec clé API (NE JAMAIS COMMITTER)
+config.js
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log

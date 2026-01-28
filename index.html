@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Assistant de Révisions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Étape 1: Accueil -->
+        <section id="step-welcome" class="step active">
+            <div class="welcome-card">
+                <h1>🎓 Bienvenue sur ton Assistant de Révisions !</h1>
+                <p>Je vais t'aider à réviser et à te préparer pour tes évaluations.</p>
+                
+                <div class="form-group">
+                    <label for="student-name">Comment t'appelles-tu ?</label>
+                    <input type="text" id="student-name" placeholder="Ton prénom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tone">Quel ton préfères-tu ?</label>
+                    <select id="tone" required>
+                        <option value="">Choisis un ton...</option>
+                        <option value="amical">Amical et encourageant 😊</option>
+                        <option value="serieux">Sérieux et professionnel 📚</option>
+                        <option value="ludique">Ludique et amusant 🎮</option>
+                    </select>
+                </div>
+                
+                <button class="btn-primary" onclick="goToStep2()">Commencer !</button>
+            </div>
+        </section>
+
+        <!-- Étape 2: Niveau et Matière -->
+        <section id="step-subject" class="step">
+            <div class="content-card">
+                <h2>Bonjour <span id="display-name"></span> !</h2>
+                <p>Dis-moi ce que tu souhaites réviser.</p>
+                
+                <div class="form-group">
+                    <label for="level">Dans quelle classe es-tu ?</label>
+                    <select id="level" required onchange="updateSubjects()">
+                        <option value="">Choisis ta classe...</option>
+                        <optgroup label="École primaire">
+                            <option value="CE1">CE1</option>
+                            <option value="CE2">CE2</option>
+                            <option value="CM1">CM1</option>
+                            <option value="CM2">CM2</option>
+                        </optgroup>
+                        <optgroup label="Collège">
+                            <option value="6ème">6ème</option>
+                            <option value="5ème">5ème</option>
+                            <option value="4ème">4ème</option>
+                            <option value="3ème">3ème</option>
+                        </optgroup>
+                        <optgroup label="Lycée">
+                            <option value="Seconde">Seconde</option>
+                            <option value="Première">Première</option>
+                            <option value="Terminale">Terminale</option>
+                        </optgroup>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Quelle matière veux-tu réviser ?</label>
+                    <div class="subject-selection">
+                        <div id="subject-buttons" class="subject-grid"></div>
+                        <div class="or-divider">
+                            <span>ou</span>
+                        </div>
+                        <input type="text" id="custom-subject" placeholder="Tape une autre matière...">
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="goToStep1()">← Retour</button>
+                    <button class="btn-primary" onclick="goToStep3()">Suivant →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Étape 3: Sujet -->
+        <section id="step-topic" class="step">
+            <div class="content-card">
+                <h2>Quel sujet veux-tu travailler en <span id="display-subject"></span> ?</h2>
+                
+                <div class="form-group">
+                    <label>Sujets populaires :</label>
+                    <div id="topic-buttons" class="topic-grid"></div>
+                    <div class="or-divider">
+                        <span>ou</span>
+                    </div>
+                    <input type="text" id="custom-topic" placeholder="Tape ton sujet...">
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="goToStep2()">← Retour</button>
+                    <button class="btn-primary" onclick="goToStep4()">Suivant →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Étape 4: Type d'activité -->
+        <section id="step-activity" class="step">
+            <div class="content-card">
+                <h2>Que souhaites-tu faire, <span id="display-name-final"></span> ?</h2>
+                
+                <div class="activity-cards">
+                    <div class="activity-card" onclick="selectActivity('comprendre')">
+                        <div class="activity-icon">📖</div>
+                        <h3>Comprendre une leçon</h3>
+                        <p>Je t'explique le cours de manière simple et claire</p>
+                    </div>
+                    
+                    <div class="activity-card" onclick="selectActivity('entrainer')">
+                        <div class="activity-icon">✏️</div>
+                        <h3>M'entraîner sur des exercices</h3>
+                        <p>Je te propose des exercices pour t'entraîner</p>
+                    </div>
+                    
+                    <div class="activity-card" onclick="selectActivity('evaluer')">
+                        <div class="activity-icon">🎯</div>
+                        <h3>Préparer une évaluation</h3>
+                        <p>Je t'aide à réviser pour ton contrôle</p>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="goToStep3()">← Retour</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Étape 5: Résumé et génération -->
+        <section id="step-summary" class="step">
+            <div class="content-card">
+                <h2>Récapitulatif de ta demande</h2>
+                
+                <div class="summary-box">
+                    <div class="summary-item">
+                        <strong>Élève :</strong> <span id="summary-name"></span>
+                    </div>
+                    <div class="summary-item">
+                        <strong>Ton choisi :</strong> <span id="summary-tone"></span>
+                    </div>
+                    <div class="summary-item">
+                        <strong>Classe :</strong> <span id="summary-level"></span>
+                    </div>
+                    <div class="summary-item">
+                        <strong>Matière :</strong> <span id="summary-subject"></span>
+                    </div>
+                    <div class="summary-item">
+                        <strong>Sujet :</strong> <span id="summary-topic"></span>
+                    </div>
+                    <div class="summary-item">
+                        <strong>Activité :</strong> <span id="summary-activity"></span>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="goToStep4()">← Modifier</button>
+                    <button class="btn-primary" onclick="startSession()">🚀 Lancer la session</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Étape 6: Chat interactif -->
+        <section id="step-chat" class="step">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2>💬 Session de révision avec <span id="chat-student-name"></span></h2>
+                    <div class="header-menu">
+                        <button class="btn-menu" onclick="toggleMenu(event)" id="menu-button">⚙️</button>
+                        <div class="menu-dropdown" id="menu-dropdown">
+                            <button class="menu-item" onclick="openSettings(); toggleMenu();" type="button">⚙️ Réglages</button>
+                            <button class="menu-item" onclick="changeActivity(); toggleMenu();" type="button">🔄 Changer d'activité</button>
+                            <button class="menu-item" onclick="newSession(); toggleMenu();" type="button">🆕 Nouvelle session</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-info">
+                    <span class="chat-badge">📚 <span id="chat-subject"></span></span>
+                    <span class="chat-badge">📝 <span id="chat-topic"></span></span>
+                    <span class="chat-badge">🎯 <span id="chat-activity"></span></span>
+                </div>
+
+                <div id="chat-messages" class="chat-messages"></div>
+
+                <div class="loading-message" id="loading-message">
+                    <div class="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p>Préparation de ta session...</p>
+                </div>
+
+                <div id="action-buttons" class="action-buttons"></div>
+
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" placeholder="Pose une question ou réponds ici..." />
+                    <button class="btn-send" onclick="sendMessage()">Envoyer 📨</button>
+                </div>
+
+                <div class="api-key-notice" id="api-key-notice">
+                    <p>⚠️ Pour utiliser ChatGPT, configure ta clé API OpenAI</p>
+                    <p style="font-size: 0.9em; margin-top: -5px;">💾 Elle sera sauvegardée sur cet appareil pour tes prochaines visites</p>
+                    <input type="password" id="api-key-input" placeholder="Clé API OpenAI (sk-...)" />
+                    <button class="btn-save-key" onclick="saveApiKey()">💾 Enregistrer la clé</button>
+                    <p style="font-size: 0.85em; margin-top: 10px; color: #666;">
+                        <a href="https://platform.openai.com/api-keys" target="_blank" style="color: #667eea;">🔗 Obtenir une clé API</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal de réglages -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ Réglages</h2>
+                <button class="btn-close-modal" onclick="closeSettings()">✕</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="settings-name">Prénom de l'élève</label>
+                    <input type="text" id="settings-name" placeholder="Prénom">
+                </div>
+                
+                <div class="form-group">
+                    <label for="settings-tone">Ton de communication</label>
+                    <select id="settings-tone">
+                        <option value="amical">Amical et encourageant 😊</option>
+                        <option value="serieux">Sérieux et professionnel 📚</option>
+                        <option value="ludique">Ludique et amusant 🎮</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="settings-level">Classe</label>
+                    <select id="settings-level">
+                        <option value="">Choisis ta classe...</option>
+                        <optgroup label="École primaire">
+                            <option value="CE1">CE1</option>
+                            <option value="CE2">CE2</option>
+                            <option value="CM1">CM1</option>
+                            <option value="CM2">CM2</option>
+                        </optgroup>
+                        <optgroup label="Collège">
+                            <option value="6ème">6ème</option>
+                            <option value="5ème">5ème</option>
+                            <option value="4ème">4ème</option>
+                            <option value="3ème">3ème</option>
+                        </optgroup>
+                        <optgroup label="Lycée">
+                            <option value="Seconde">Seconde</option>
+                            <option value="Première">Première</option>
+                            <option value="Terminale">Terminale</option>
+                        </optgroup>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="settings-api-key">Clé API OpenAI</label>
+                    <input type="password" id="settings-api-key" placeholder="sk-...">
+                    <small style="color: #666; font-style: italic;">Ta clé est stockée localement et en sécurité</small>
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn-danger" onclick="clearAllData()">🗑️ Effacer toutes les données</button>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeSettings()">Annuler</button>
+                <button class="btn-primary" onclick="saveSettings()">💾 Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration (optionnel) -->
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
