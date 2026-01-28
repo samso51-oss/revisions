@@ -406,6 +406,8 @@ select:focus {
     flex-direction: column;
     height: 85vh;
     max-height: 800px;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .chat-header {
@@ -776,91 +778,118 @@ select:focus {
     /* Optimisation spécifique pour la page de chat */
     .chat-container {
         height: 100vh;
-        padding: 10px;
+        max-height: 100vh;
+        padding: 8px;
         border-radius: 0;
+        margin: 0;
     }
     
     .chat-header {
-        padding-bottom: 8px;
-        margin-bottom: 8px;
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+        flex-shrink: 0;
     }
     
     .chat-header h2 {
-        font-size: 1.1em;
+        font-size: 1em;
+        line-height: 1.2;
     }
     
     .btn-menu {
-        padding: 8px 12px;
-        font-size: 1.1em;
+        padding: 6px 10px;
+        font-size: 1em;
+        min-width: 40px;
     }
     
     .chat-info {
-        margin-bottom: 8px;
-        gap: 5px;
+        margin-bottom: 6px;
+        gap: 4px;
+        flex-shrink: 0;
     }
     
     .chat-badge {
-        padding: 5px 10px;
-        font-size: 0.75em;
+        padding: 4px 8px;
+        font-size: 0.7em;
     }
     
     .chat-messages {
-        padding: 10px;
-        margin-bottom: 8px;
-        /* Hauteur optimisée pour mobile */
-        height: calc(100vh - 280px);
-        max-height: none;
+        padding: 8px;
+        margin-bottom: 6px;
+        /* Hauteur optimisée pour mobile avec tous les éléments */
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
     }
     
     .message-bubble {
         max-width: 85%;
-        padding: 10px 15px;
-        font-size: 0.95em;
+        padding: 8px 12px;
+        font-size: 0.9em;
     }
     
     .action-buttons {
-        padding: 0 5px;
-        margin-bottom: 8px;
-        gap: 5px;
+        padding: 0 4px;
+        margin-bottom: 6px;
+        gap: 4px;
         overflow-x: auto;
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
+        flex-shrink: 0;
     }
     
     .action-btn {
-        padding: 8px 15px;
-        font-size: 0.85em;
+        padding: 6px 12px;
+        font-size: 0.8em;
         white-space: nowrap;
         flex-shrink: 0;
     }
     
     .chat-input-container {
-        gap: 5px;
+        gap: 4px;
+        flex-shrink: 0;
     }
     
     #chat-input {
-        padding: 12px;
-        font-size: 0.95em;
+        padding: 10px;
+        font-size: 0.9em;
+        border-radius: 20px;
     }
     
     .btn-send {
-        padding: 12px 20px;
-        font-size: 0.95em;
+        padding: 10px 15px;
+        font-size: 0.85em;
+        border-radius: 20px;
+        white-space: nowrap;
     }
     
     .loading-message {
-        padding: 15px;
+        padding: 12px;
+        flex-shrink: 0;
     }
     
     .api-key-notice {
-        margin-top: 10px;
-        padding: 10px;
-        font-size: 0.9em;
+        margin-top: 8px;
+        padding: 8px;
+        font-size: 0.85em;
+        flex-shrink: 0;
     }
     
     .api-key-notice p {
-        font-size: 0.9em;
+        font-size: 0.85em;
+        margin-bottom: 6px;
+    }
+    
+    #api-key-input {
+        width: 100%;
         margin-bottom: 8px;
+        font-size: 0.9em;
+        padding: 8px;
+    }
+    
+    .btn-save-key {
+        width: 100%;
+        font-size: 0.9em;
+        padding: 10px;
     }
 }
 
