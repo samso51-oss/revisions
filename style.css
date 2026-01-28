@@ -861,21 +861,22 @@ select:focus {
     }
     
     .hamburger-icon {
-        width: 20px;
+        width: 16px;
         height: 2px;
     }
     
     .hamburger-icon::before,
     .hamburger-icon::after {
-        width: 20px;
+        width: 16px;
+        height: 2px;
     }
     
     .hamburger-icon::before {
-        top: -6px;
+        top: -5px;
     }
     
     .hamburger-icon::after {
-        top: 6px;
+        top: 5px;
     }
     
     .chat-info {
@@ -905,7 +906,7 @@ select:focus {
     }
     
     .action-buttons {
-        padding: 0 8px;
+        padding: 0;
         margin: 0 0 6px 0;
         gap: 6px;
         overflow-x: auto;
@@ -913,10 +914,11 @@ select:focus {
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
         flex-shrink: 0;
-        /* Permettre de voir tous les boutons */
-        width: calc(100% - 16px);
-        margin-left: 8px;
+        width: 100%;
+        box-sizing: border-box;
         scroll-snap-type: x proximity;
+        display: flex;
+        justify-content: flex-start;
     }
     
     .action-buttons::-webkit-scrollbar {
@@ -929,6 +931,15 @@ select:focus {
         white-space: nowrap;
         flex-shrink: 0;
         scroll-snap-align: start;
+        margin-left: 0;
+    }
+    
+    .action-btn:first-child {
+        margin-left: 8px;
+    }
+    
+    .action-btn:last-child {
+        margin-right: 8px;
     }
     
     .chat-input-container {
