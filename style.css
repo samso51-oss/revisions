@@ -854,10 +854,10 @@ select:focus {
     }
     
     .btn-menu {
-        padding: 6px 10px;
-        font-size: 1em;
-        min-width: 40px;
-        min-height: 40px;
+        padding: 4px 8px;
+        font-size: 0.9em;
+        min-width: 35px;
+        min-height: 35px;
     }
     
     .hamburger-icon {
@@ -868,7 +868,6 @@ select:focus {
     .hamburger-icon::before,
     .hamburger-icon::after {
         width: 16px;
-        height: 2px;
     }
     
     .hamburger-icon::before {
@@ -914,11 +913,13 @@ select:focus {
         flex-wrap: nowrap;
         -webkit-overflow-scrolling: touch;
         flex-shrink: 0;
+        /* Permettre de voir tous les boutons */
         width: 100%;
         box-sizing: border-box;
         scroll-snap-type: x proximity;
-        display: flex;
-        justify-content: flex-start;
+        /* Ajouter un padding interne pour éviter la troncature */
+        padding-left: 8px;
+        padding-right: 8px;
     }
     
     .action-buttons::-webkit-scrollbar {
@@ -931,15 +932,6 @@ select:focus {
         white-space: nowrap;
         flex-shrink: 0;
         scroll-snap-align: start;
-        margin-left: 0;
-    }
-    
-    .action-btn:first-child {
-        margin-left: 8px;
-    }
-    
-    .action-btn:last-child {
-        margin-right: 8px;
     }
     
     .chat-input-container {
