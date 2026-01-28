@@ -791,12 +791,6 @@ select:focus {
         height: 90vh;
     }
 
-    .chat-header {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-    }
-
     .message-bubble {
         max-width: 90%;
     }
@@ -828,17 +822,35 @@ select:focus {
         padding: 8px;
         border-radius: 0;
         margin: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .chat-header {
         padding-bottom: 6px;
         margin-bottom: 6px;
         flex-shrink: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     
     .chat-header h2 {
         font-size: 1em;
         line-height: 1.2;
+        margin: 0;
+        flex: 1;
+    }
+    
+    .header-menu {
+        position: relative;
+        margin-left: 10px;
+    }
+    
+    .menu-dropdown {
+        right: 0;
+        left: auto;
+        min-width: 180px;
     }
     
     .btn-menu {
@@ -893,8 +905,8 @@ select:focus {
     }
     
     .action-buttons {
-        padding: 0;
-        margin-bottom: 6px;
+        padding: 0 8px;
+        margin: 0 0 6px 0;
         gap: 6px;
         overflow-x: auto;
         overflow-y: hidden;
@@ -902,8 +914,9 @@ select:focus {
         -webkit-overflow-scrolling: touch;
         flex-shrink: 0;
         /* Permettre de voir tous les boutons */
-        width: 100%;
-        scroll-snap-type: x mandatory;
+        width: calc(100% - 16px);
+        margin-left: 8px;
+        scroll-snap-type: x proximity;
     }
     
     .action-buttons::-webkit-scrollbar {
